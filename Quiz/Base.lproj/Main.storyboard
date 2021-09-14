@@ -239,7 +239,13 @@
                             <constraint firstItem="XHW-Qb-azc" firstAttribute="bottom" secondItem="U3Z-XO-Sxj" secondAttribute="bottom" constant="20" id="yO5-pA-26G"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lcf-nV-bVA"/>
+                    <navigationItem key="navigationItem" id="lcf-nV-bVA">
+                        <barButtonItem key="rightBarButtonItem" title="Delete me" id="RiD-f7-G4a">
+                            <connections>
+                                <segue destination="det-oa-2Jc" kind="show" id="Vnl-QL-e2M"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="det-oa-2Jc" kind="show" id="RVI-83-DF1"/>
                     </connections>
@@ -248,21 +254,52 @@
             </objects>
             <point key="canvasLocation" x="862" y="76"/>
         </scene>
-        <!--View Controller-->
+        <!--Results View Controller-->
         <scene sceneID="jdA-Xd-qhq">
             <objects>
-                <viewController id="det-oa-2Jc" sceneMemberID="viewController">
+                <viewController id="det-oa-2Jc" customClass="ResultsViewController" customModule="Quiz" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qA9-eO-VF3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="1e5-o8-mNy">
+                                <rect key="frame" x="20" y="357" width="374" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uni-UD-lAU">
+                                        <rect key="frame" x="128.5" y="0.0" width="117" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNT-FR-402">
+                                        <rect key="frame" x="163" y="104" width="48" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ioJ-HS-Fvf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ioJ-HS-Fvf" firstAttribute="trailing" secondItem="1e5-o8-mNy" secondAttribute="trailing" constant="20" id="2BP-27-XfI"/>
+                            <constraint firstItem="1e5-o8-mNy" firstAttribute="centerY" secondItem="qA9-eO-VF3" secondAttribute="centerY" id="MC9-KA-ZaR"/>
+                            <constraint firstItem="1e5-o8-mNy" firstAttribute="leading" secondItem="ioJ-HS-Fvf" secondAttribute="leading" constant="20" id="eBQ-ol-O8E"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fgr-Vv-xSj"/>
+                    <navigationItem key="navigationItem" id="fgr-Vv-xSj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="nBu-z8-cwb">
+                            <connections>
+                                <segue destination="nth-eR-9xb" kind="unwind" unwindAction="unwindWith_segue:" id="kae-C3-oab"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UI-XI-d4b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="nth-eR-9xb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="76"/>
+            <point key="canvasLocation" x="1682.608695652174" y="75.669642857142847"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="akG-8m-C7i">
@@ -284,6 +321,9 @@
             <point key="canvasLocation" x="-10" y="76"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="RVI-83-DF1"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
