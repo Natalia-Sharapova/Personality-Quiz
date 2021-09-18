@@ -126,6 +126,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3io-lv-KGq">
                                         <rect key="frame" x="0.0" y="118" width="374" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="rangeButtonPressed" destination="s2d-D1-zla" eventType="touchUpInside" id="biG-Y6-Zs3"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -191,6 +194,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kkl-UX-Sea">
                                         <rect key="frame" x="0.0" y="172" width="374" height="30"/>
                                         <state key="normal" title="Ответить"/>
+                                        <connections>
+                                            <action selector="multiButtonPressed" destination="s2d-D1-zla" eventType="touchUpInside" id="QWB-Tm-wel"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -201,21 +207,33 @@
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="singleButtonPressed:" destination="s2d-D1-zla" eventType="touchUpInside" id="GNc-sI-DX7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dPF-WM-tG6">
                                         <rect key="frame" x="0.0" y="48" width="72" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="singleButtonPressed:" destination="s2d-D1-zla" eventType="touchUpInside" id="h4t-7a-8eE"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcw-RX-dLx">
                                         <rect key="frame" x="0.0" y="96" width="72" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="singleButtonPressed:" destination="s2d-D1-zla" eventType="touchUpInside" id="hbA-1o-lHT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rj-gM-43I">
                                         <rect key="frame" x="0.0" y="144" width="72" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="singleButtonPressed:" destination="s2d-D1-zla" eventType="touchUpInside" id="g59-2E-V6Q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -239,15 +257,29 @@
                             <constraint firstItem="XHW-Qb-azc" firstAttribute="bottom" secondItem="U3Z-XO-Sxj" secondAttribute="bottom" constant="20" id="yO5-pA-26G"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="lcf-nV-bVA">
-                        <barButtonItem key="rightBarButtonItem" title="Delete me" id="RiD-f7-G4a">
-                            <connections>
-                                <segue destination="det-oa-2Jc" kind="show" id="Vnl-QL-e2M"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="lcf-nV-bVA"/>
                     <connections>
-                        <segue destination="det-oa-2Jc" kind="show" id="RVI-83-DF1"/>
+                        <outlet property="multiplyStackView" destination="JXb-Zc-dAr" id="cXo-UK-p2r"/>
+                        <outlet property="questionLabel" destination="Exl-Vj-I9d" id="YU9-Lp-Dds"/>
+                        <outlet property="questionProgressView" destination="U3Z-XO-Sxj" id="Yhs-LN-Qq7"/>
+                        <outlet property="rangedSlider" destination="dQn-sg-6ER" id="u4g-Hc-byL"/>
+                        <outlet property="rangedStackView" destination="XOJ-mh-S94" id="QWq-fI-RyK"/>
+                        <outlet property="singleStackView" destination="zf6-VE-Q2n" id="p0c-uh-uX9"/>
+                        <outletCollection property="singleButtons" destination="z7w-Bf-RLS" collectionClass="NSMutableArray" id="B0s-N2-0fB"/>
+                        <outletCollection property="singleButtons" destination="dPF-WM-tG6" collectionClass="NSMutableArray" id="mW9-EB-Fyo"/>
+                        <outletCollection property="singleButtons" destination="Gcw-RX-dLx" collectionClass="NSMutableArray" id="AHX-5V-LMI"/>
+                        <outletCollection property="singleButtons" destination="5Rj-gM-43I" collectionClass="NSMutableArray" id="0be-B7-evW"/>
+                        <outletCollection property="multiLabel" destination="GUk-LY-z33" collectionClass="NSMutableArray" id="MtE-5V-RDR"/>
+                        <outletCollection property="multiLabel" destination="W2E-yO-S5w" collectionClass="NSMutableArray" id="gbF-2f-0k2"/>
+                        <outletCollection property="multiLabel" destination="kkH-qT-hgV" collectionClass="NSMutableArray" id="s8x-ND-oZn"/>
+                        <outletCollection property="multiLabel" destination="wQq-bY-zfO" collectionClass="NSMutableArray" id="6Ak-ng-w8R"/>
+                        <outletCollection property="rangeLabel" destination="IoT-ec-bZ6" collectionClass="NSMutableArray" id="8MH-T0-EjS"/>
+                        <outletCollection property="rangeLabel" destination="Crf-Wc-rGu" collectionClass="NSMutableArray" id="VaT-uO-X2G"/>
+                        <outletCollection property="multiSwitch" destination="rS4-HC-NGf" collectionClass="NSMutableArray" id="Uof-LA-Axw"/>
+                        <outletCollection property="multiSwitch" destination="MQW-xs-c2y" collectionClass="NSMutableArray" id="cbQ-0B-cBT"/>
+                        <outletCollection property="multiSwitch" destination="SFj-23-IbN" collectionClass="NSMutableArray" id="eUo-0j-0U6"/>
+                        <outletCollection property="multiSwitch" destination="SQ5-1Q-jle" collectionClass="NSMutableArray" id="DWi-Zh-srl"/>
+                        <segue destination="det-oa-2Jc" kind="show" identifier="Results segue" destinationCreationSelector="resultsSegue:" id="RVI-83-DF1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kI-WS-DsG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -271,7 +303,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNT-FR-402">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNT-FR-402">
                                         <rect key="frame" x="163" y="104" width="48" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
@@ -295,6 +327,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="animalLabel" destination="uni-UD-lAU" id="pUw-dg-xah"/>
+                        <outlet property="descriptionLabel" destination="lNT-FR-402" id="DiS-ec-skx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4UI-XI-d4b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="nth-eR-9xb" userLabel="Exit" sceneMemberID="exit"/>
@@ -321,9 +357,6 @@
             <point key="canvasLocation" x="-10" y="76"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="RVI-83-DF1"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
