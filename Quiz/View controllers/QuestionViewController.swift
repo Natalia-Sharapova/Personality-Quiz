@@ -9,6 +9,7 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
+    // MARK: - Outlets:
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var singleStackView: UIStackView!
@@ -27,8 +28,9 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var imageStackView: UIStackView!
     @IBOutlet var imageButtons: [UIButton]!
     
-    
     @IBOutlet weak var questionProgressView: UIProgressView!
+    
+    // MARK: - Properties:
     
     var answersChosen: [Answer] = [] {
         didSet {
@@ -51,6 +53,8 @@ class QuestionViewController: UIViewController {
         updateUI()
     }
     
+    // MARK: - Update User Interface
+    
     func updateUI () {
         
         func updateSingleStack () {
@@ -63,6 +67,8 @@ class QuestionViewController: UIViewController {
                 button.setTitle(answer.text, for: [])
             }
         }
+        
+        // MARK: - Update stacks
         
         func updateMultiplyStack () {
             multiplyStackView.isHidden = false
@@ -107,6 +113,9 @@ class QuestionViewController: UIViewController {
         let currentQuestion = Question.all[questionIndex]
         let totalProgress = Float(questionIndex) / Float(Question.all.count)
         
+        
+        // MARK: - Update navigationItem, questionLabel, questionProgressView:
+        
         navigationItem.title = "Вопрос № \(questionIndex + 1)"
         questionLabel.text = currentQuestion.text
         questionProgressView.setProgress(totalProgress, animated: true)
@@ -131,6 +140,8 @@ class QuestionViewController: UIViewController {
             performSegue(withIdentifier: "Results segue", sender: nil)
         }
     }
+    
+    // MARK: - Actions:
     
     @IBAction func singleButtonPressed(_ sender: UIButton) {
         let answers = Question.all[questionIndex].answers

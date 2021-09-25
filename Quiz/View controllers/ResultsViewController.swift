@@ -9,10 +9,13 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
+    // MARK: - Outlets:
     
     @IBOutlet weak var animalLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var countOfAnswersLabel: UILabel!
+    
+    // MARK: - Properties:
     
     let answers: [Answer]
     let mostCommonAnswer = ""
@@ -26,6 +29,14 @@ class ResultsViewController: UIViewController {
         fatalError("#line, #function init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.hidesBackButton = true
+        calculatePersonalityResult()
+    }
+    
+    // MARK: - Find most common answer:
+    
     func calculatePersonalityResult () {
         let frequencyOfAnswers = answers.reduce(into: [:]) { counts, answer in
             counts[answer.type, default: 0] += 1
@@ -36,11 +47,7 @@ class ResultsViewController: UIViewController {
         updateUI(with: mostCommonAnswer)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.hidesBackButton = true
-        calculatePersonalityResult()
-    }
+    // MARK: - Update user interface:
     
     func updateUI (with animal: AnimalType) {
         animalLabel.text = "Вы - \(animal.rawValue)"
