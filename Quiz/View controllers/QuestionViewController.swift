@@ -30,12 +30,10 @@ class QuestionViewController: UIViewController {
     
     @IBOutlet weak var questionProgressView: UIProgressView!
     
-    
-    
     var answersChosen: [Answer] = [] {
-    didSet {
-        print(#line, #function, answersChosen)
-    }
+        didSet {
+            print(#line, #function, answersChosen)
+        }
     }
     var currentAnswers: [Answer] {
         currentQuestion.answers
@@ -46,7 +44,7 @@ class QuestionViewController: UIViewController {
     }
     
     var questionIndex = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         rangedSlider.maximumValue = 0.99999
@@ -63,7 +61,7 @@ class QuestionViewController: UIViewController {
             }
             for (button, answer) in zip(singleButtons, currentAnswers) {
                 button.setTitle(answer.text, for: [])
-    }
+            }
         }
         
         func updateMultiplyStack () {
@@ -73,7 +71,7 @@ class QuestionViewController: UIViewController {
             }
             for (label, answer) in zip(multiLabel, currentAnswers) {
                 label.text = answer.text
-    }
+            }
         }
         
         func updateRangeStack () {
@@ -81,25 +79,25 @@ class QuestionViewController: UIViewController {
             rangeLabel.first?.text = currentAnswers.first?.text
             rangeLabel.last?.text = currentAnswers.last?.text
             print("\(currentQuestion)")
-    }
-    
+        }
+        
         func updateImageStack() {
             imageStackView.isHidden = false
-        let images = (0...3).compactMap { UIImage(named: "image\($0)") }
+            let images = (0...3).compactMap { UIImage(named: "image\($0)") }
             
             for (index, button) in imageButtons.enumerated() {
                 button.setTitle(nil, for: [])
                 button.tag = index
                 
-            for (button, image) in zip(imageButtons, images) {
-                button.setBackgroundImage(image, for: UIControl.State.normal)
-                
-            for (button, answer) in zip(imageButtons, currentAnswers) {
-                    button.setTitle(answer.text, for: [])
-            
-        }
+                for (button, image) in zip(imageButtons, images) {
+                    button.setBackgroundImage(image, for: UIControl.State.normal)
+                    
+                    for (button, answer) in zip(imageButtons, currentAnswers) {
+                        button.setTitle(answer.text, for: [])
+                        
+                    }
+                }
             }
-        }
         }
         
         for stackView in [singleStackView, multiplyStackView, rangedStackView, imageStackView] {
@@ -117,9 +115,9 @@ class QuestionViewController: UIViewController {
         case .single:
             updateSingleStack()
         case .multiply:
-          updateMultiplyStack()
+            updateMultiplyStack()
         case .range:
-           updateRangeStack()
+            updateRangeStack()
         case .imageSingle:
             updateImageStack()
         }
@@ -128,12 +126,12 @@ class QuestionViewController: UIViewController {
     func nextQuestion() {
         questionIndex += 1
         if questionIndex < Question.all.count {
-        updateUI()
+            updateUI()
         } else {
-        performSegue(withIdentifier: "Results segue", sender: nil)
+            performSegue(withIdentifier: "Results segue", sender: nil)
+        }
     }
-    }
-
+    
     @IBAction func singleButtonPressed(_ sender: UIButton) {
         let answers = Question.all[questionIndex].answers
         let index = sender.tag
@@ -142,7 +140,7 @@ class QuestionViewController: UIViewController {
         }
         let answer = answers[index]
         answersChosen.append(answer)
-       nextQuestion()
+        nextQuestion()
     }
     
     @IBAction func multiButtonPressed () {
@@ -151,23 +149,22 @@ class QuestionViewController: UIViewController {
             if multiSwitch.isOn && index < currentAnswers.count {
                 let answer = currentAnswers[index]
                 answersChosen.append(answer)
-    }
-}
+            }
+        }
         nextQuestion()
     }
     
     @IBAction func rangeButtonPressed () {
         let index = Int(round(rangedSlider.value * Float(currentAnswers.count - 1)))
         if index < currentAnswers.count {
-        let answer = currentAnswers[index]
-        answersChosen.append(answer)
+            let answer = currentAnswers[index]
+            answersChosen.append(answer)
         }
         nextQuestion()
     }
     
-    
     @IBAction func imageButtonPressed(_ sender: UIButton) {
-
+        
         let answers = Question.all[questionIndex].answers
         let index = sender.tag
         guard  0 <= index && index < answers.count else {
@@ -175,13 +172,12 @@ class QuestionViewController: UIViewController {
         }
         let answer = answers[index]
         answersChosen.append(answer)
-       nextQuestion()
+        nextQuestion()
     }
-    
     
     @IBSegueAction func resultsSegue(_ coder: NSCoder) -> ResultsViewController? {
         return ResultsViewController(coder: coder, answers: answersChosen)
     }
-
+    
 }
 

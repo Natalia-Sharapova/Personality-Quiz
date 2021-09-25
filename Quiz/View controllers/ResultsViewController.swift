@@ -8,12 +8,10 @@
 import UIKit
 
 class ResultsViewController: UIViewController {
-
+    
     
     @IBOutlet weak var animalLabel: UILabel!
-    
     @IBOutlet weak var descriptionLabel: UILabel!
-    
     @IBOutlet weak var countOfAnswersLabel: UILabel!
     
     let answers: [Answer]
@@ -29,17 +27,15 @@ class ResultsViewController: UIViewController {
     }
     
     func calculatePersonalityResult () {
-    let frequencyOfAnswers = answers.reduce(into: [:]) { counts, answer in
-        counts[answer.type, default: 0] += 1
+        let frequencyOfAnswers = answers.reduce(into: [:]) { counts, answer in
+            counts[answer.type, default: 0] += 1
         }
         
         let mostCommonAnswer = frequencyOfAnswers.sorted { pair1, pair2 in
             pair1.value > pair2.value }.first!.key
-            updateUI(with: mostCommonAnswer)
-
-      //print(#line, #function, frequencyOfAnswers)
-        }
-        
+        updateUI(with: mostCommonAnswer)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -53,9 +49,7 @@ class ResultsViewController: UIViewController {
         let frOfAnswers = answers.reduce(into: [:]) { counts, answer in
             counts[answer.type.rawValue, default: 0] += 1
         }
-        
         countOfAnswersLabel.text = ("\(frOfAnswers)")
-                                
-}
     }
+}
 
