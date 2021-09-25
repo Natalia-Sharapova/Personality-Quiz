@@ -38,6 +38,13 @@ struct Question {
                  Answer(text: "Не замечаю", type: .turtle),
             Answer(text: "Обожаю", type: .dog),
                  ]),
+        
+        Question(text: "Выберите понравившуюся картинку", type: .imageSingle, answers: [
+            Answer(text: "Трава", type: .rabbit),
+            Answer(text: "Парк", type: .dog),
+            Answer(text: "Пляж", type: .turtle),
+            Answer(text: "Диван", type: .cat),
+                 ]),
     ]
     }
 

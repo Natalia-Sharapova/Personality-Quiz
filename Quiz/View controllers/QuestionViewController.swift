@@ -9,6 +9,7 @@ import UIKit
 
 class QuestionViewController: UIViewController {
     
+    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var singleStackView: UIStackView!
     @IBOutlet var singleButtons: [UIButton]!
@@ -22,7 +23,14 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var rangedSlider: UISlider!
     @IBOutlet var rangeLabel: [UILabel]!
     
+    
+    @IBOutlet weak var imageStackView: UIStackView!
+    @IBOutlet var imageButtons: [UIButton]!
+    
+    
     @IBOutlet weak var questionProgressView: UIProgressView!
+    
+    
     
     var answersChosen: [Answer] = [] {
     didSet {
@@ -55,8 +63,8 @@ class QuestionViewController: UIViewController {
             }
             for (button, answer) in zip(singleButtons, currentAnswers) {
                 button.setTitle(answer.text, for: [])
-            }
     }
+        }
         
         func updateMultiplyStack () {
             multiplyStackView.isHidden = false
@@ -72,9 +80,29 @@ class QuestionViewController: UIViewController {
             rangedStackView.isHidden = false
             rangeLabel.first?.text = currentAnswers.first?.text
             rangeLabel.last?.text = currentAnswers.last?.text
+            print("\(currentQuestion)")
     }
+    
+        func updateImageStack() {
+            imageStackView.isHidden = false
+        let images = (0...3).compactMap { UIImage(named: "image\($0)") }
+            
+            for (index, button) in imageButtons.enumerated() {
+                button.setTitle(nil, for: [])
+                button.tag = index
+                
+            for (button, image) in zip(imageButtons, images) {
+                button.setBackgroundImage(image, for: UIControl.State.normal)
+                
+            for (button, answer) in zip(imageButtons, currentAnswers) {
+                    button.setTitle(answer.text, for: [])
+            
+        }
+            }
+        }
+        }
         
-        for stackView in [singleStackView, multiplyStackView, rangedStackView] {
+        for stackView in [singleStackView, multiplyStackView, rangedStackView, imageStackView] {
             stackView?.isHidden = true
         }
         
@@ -92,6 +120,8 @@ class QuestionViewController: UIViewController {
           updateMultiplyStack()
         case .range:
            updateRangeStack()
+        case .imageSingle:
+            updateImageStack()
         }
     }
     
@@ -135,7 +165,23 @@ class QuestionViewController: UIViewController {
         nextQuestion()
     }
     
+    
+    @IBAction func imageButtonPressed(_ sender: UIButton) {
+
+        let answers = Question.all[questionIndex].answers
+        let index = sender.tag
+        guard  0 <= index && index < answers.count else {
+            return
+        }
+        let answer = answers[index]
+        answersChosen.append(answer)
+       nextQuestion()
+    }
+    
+    
     @IBSegueAction func resultsSegue(_ coder: NSCoder) -> ResultsViewController? {
         return ResultsViewController(coder: coder, answers: answersChosen)
     }
+
 }
+
